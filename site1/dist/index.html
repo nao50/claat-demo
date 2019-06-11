@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>hoge</title>
+  <title>SORACOM Discovery 2018</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
@@ -23,9 +23,93 @@
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab codelab-gaid=""
                   id="dist"
-                  title="hoge"
+                  title="SORACOM Discovery 2018"
                   environment="web"
                   feedback-link="">
+    
+      <google-codelab-step label="このハンズオンで体験いただくこと" duration="0">
+        <p>SORACOM SIM を搭載した Wio LTE に温湿度センサーを取り付け、温湿度データを可視化サービス SORACOM Harvestと、ダッシュボード作成・共有サービス SORACOM Lagoon を使って表示します。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="持ち物" duration="0">
+        <ul>
+<li>パソコン / 1台<br>（Wi-Fi 接続可能、USB Type-A ポートあり、電力供給が1A以上であること、Google Chromeがインストールされていること）<br>※USB Type-C のみの機種につきましては、Type-A への変換アダプタのご用意をお願いいたします</li>
+<li>有効なクレジットカード</li>
+<li>その場で確認可能なメールアドレス</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="SORACOM アカウントの登録" duration="0">
+        <h3 is-upgraded>SORACOM アカウントの作成</h3>
+<p>SORACOM Webコンソール ( https://console.soracom.io/#/signup) にアクセスします。<br>使用する SIM の種類を選択します。日本向けの SORACOM Air SIM を利用する場合は、カバレッジタイプ Japan を選択します。</p>
+<p>「アカウント作成」画面が表示されますのでメールアドレスおよびパスワードを入力します。 また、契約者が個人であるか法人であるかを選び、法人の場合はさらに契約者の情報を入力します。 最後に規約に同意するためのチェックボックスを入れ、「アカウントを作成」ボタンを押します。<br>[アカウントを作成] ボタンをクリックします。<br><img src="img/33cf1c4ff6d9c3d1.png"><img src="img/7acff835a1132536.png"><br>下記の画面が表示されるので、メールを確認してください。<br><img src="img/8fbd47d82aee4464.png"></p>
+<p>メールが届いたらリンクをクリックしてください。<br><img src="img/dd900d77b33f3e7f.png"><br>自動的にログイン画面に遷移しますので、メールアドレスとパスワードを入力してログインしてください。</p>
+<h3 is-upgraded>支払情報の設定</h3>
+<p>通信料の支払い方法はクレジットカードになります。クレジットカードの情報を登録するには、メイン画面上部のユーザー名から[お支払い方法設定]を開きます。<br><img src="img/66b9c3f8932538b3.png"></p>
+<p>お支払方法で各情報を入力し、支払い方法を登録します。<br><img src="img/a6412b236ae2ca3a.png"></p>
+<h2 is-upgraded>SORACOM Air SIMの登録</h2>
+<h3 is-upgraded>ユーザーコンソールでの Air SIM の登録</h3>
+<p>ユーザーコンソールにログインして、Air SIM の登録を行います。左上の [SIM登録] ボタンをクリックします。<br><img src="img/e6ce7f429d99c826.png"></p>
+<p>「SIM登録」画面で、Air SIM の台紙の裏面に貼ってある IMSI と PASSCODE を入力してください。<br><img src="img/63f4d564296f7339.png"></p>
+<p>名前、グループは空欄のままでも構いません。 「技術基準適合証明等について確認しました」チェックボックスを付けてください。 [登録] を押して SIM 登録を完了してください。（複数の Air SIM を続けて登録することも可能です。）<br><img src="img/1141cfc7a3254e36.png"></p>
+<p>Air SIM を登録した直後の状態は「準備完了」と表示され、通信可能な状態になっています。ただし、まだセッションは確立されていないので、セッション状態は「オフライン」になっていることを確認してください。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Wio LTE のセットアップを行う" duration="0">
+        <h3 is-upgraded>Wio LTE とは？</h3>
+<p>Wio LTE は Seeed Studio が開発・販売しているマイコンモジュールです<br>Grove コネクタと STM32F4 マイコン、LTE Cat.1 モジュールが搭載されており、 Arduino IDE で素早くプロトタイピングができます</p>
+<p class="image-container"><img src="img/9320b3863ceaac1.png"></p>
+<ul>
+<li>Wio LTE 各部の名称<br>※この項は知識として知っておいてください<br><img src="img/349ce5cde2de77a9.png"></li>
+</ul>
+<h3 is-upgraded>アンテナの取り付け</h3>
+<p>アンテナの取り付けはかなり力を要しますが、無理をしないようお願いいたします。<br><img src="img/ba76f34e3205111f.png"></p>
+<h3 is-upgraded>SIM の取り付け方、外し方</h3>
+<p>取付け方<br><img src="img/154e0637fddbf44.png"></p>
+<p>外し方<br><img src="img/8aa8862ca74ea8bb.png"></p>
+<h3 is-upgraded>温湿度センサーの取り付け</h3>
+<p>温度センサー (DHT11) 付属の 「Grove コネクタケーブル」を使ってWio LTE の「D38」へ取り付けます<br><img src="img/4fcbb78935fd1fb0.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="温湿度センサーの値を SORACOM Harvest で可視化" duration="0">
+        <p>クラウド側のシステムを用意せず、まずデバイスとセルラー通信の稼働を確認するために、SORACOM Harvest による可視化を行います<br>構築対象システムを減少することができるため、コンポーネントの動作確認を一つづつ確認していく事ができることを学びます<br><img src="img/9bf4748e9513c055.png"></p>
+<h3 is-upgraded>SORACOM Harvest の設定</h3>
+<p>SORACOM Webコンソール ( https://console.soracom.io ) で 左上[Menu] &gt; [SIM グループ]<br>[追加] で、SIMグループを作成します<br><img src="img/a0e8446c7469f2e1.png"></p>
+<p>グループ名 harvest もしくは 任意 でかまいません<br><img src="img/e0d5d9685031ae63.png"></p>
+<p>先ほど作成した SIMグループ をクリックすると、グループの詳細が開きます<br>SIM グループの詳細で SORACOM Harvest の設定 開き、SORACOM Harvest を ON にし、保存をクリックします</p>
+<p class="image-container"><img src="img/35a5e0ca89602835.png"></p>
+<p>先ほど設定した SIM グループへ、 Wio LTE に挿している SIM を所属させます<br>左上[Menu] &gt; [SIM 管理]</p>
+<p class="image-container"><img src="img/31cafcc4c9e4dbda.png"></p>
+<p>Wio LTE に取り付けている SIM を選択 &gt; [操作] &gt; [所属グループ変更]<br>先ほど作成した SIMグループ に所属させる<br><img src="img/a545c9d4a07dfb8c.png"></p>
+<p>以下のように SIM がさきほど登録した SIMグループ になっていることが確認できます<br>この状態で &#34;Wio LTE&#34; と書かれている SIM は SORACOM Harvest が使用可能な状態になりました<br><img src="img/3ae2d7c72673f36e.png"></p>
+<h3 is-upgraded>Wio LTE の電源を ON にする</h3>
+<p>Wio LTE と PC を microUSB ケーブルで接続してください</p>
+<p>Wio LTE に電源が供給されると Wio LTE にあらかじめ書き込まれたプログラムが開始されます<br>※お配りした Wio LTE には「D38 に接続されたデジタル温湿度センサーを SORACOM Harvest に送信する」プログラムが書き込まれています</p>
+<p class="image-container"><img src="img/6d7deca720bde363.png"></p>
+<h3 is-upgraded>データの確認</h3>
+<p>送信されたデータを SORACOM Harvest で確認してみましょう<br>左上[Menu] &gt; [SIM 管理]</p>
+<p class="image-container"><img src="img/b6306c1c2712df38.png"></p>
+<p>以下のように、温度・湿度のデータが、それぞれ temp humi として SORACOM Harvest 上で可視化されています<br><img src="img/34c3f9d2f905a002.png"></p>
+<p>※自動更新を ON にすることで、半リアルタイムにグラフが描画されます</p>
+<p><strong>SORACOM Harvest の見方、機能</strong><img src="img/96cba9de3cf33a67.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="SORACOM Lagoon を活用したデータ共有" duration="0">
+        <p>SORACOM Harvest は SORACOM アカウント内でデバイスからのデータをいち早く確認するためのツールですが、ビジネスで活用しようとした場合はデータの活用が必須となります。<br>具体的には「データの共有」と「条件によるアラート」です。<br>SORACOM Lagoon はその二つを備えており、SORACOM Harvest に蓄積されたデータを即座に活用することが可能です。</p>
+<p><strong>SORACOM Lagoonとは</strong><br>SORACOM Lagoon はダッシュボードを作成し、&#34;SORACOM Lagoon ユーザー&#34; と共有できるサービスです。SORACOM Lagoon ユーザーは SORACOM アカウントを持っていれば自由に作成・管理可能で、だれと共有するかを決めることができます。<br>その他、条件を設定し、Email や Slack、LINEといったメッセージングツールへのアラート送信も可能です。</p>
+
+
+      </google-codelab-step>
     
   </google-codelab>
 
